@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Vanguardia · Q1 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,700;1,9..144,900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F2EFE7;
+  --bg-card: #FFFFFF;
+  --bg-dark: #0F0F0E;
+  --ink: #0F0F0E;
+  --ink-2: #4A4A47;
+  --ink-3: #8A8A85;
+  --rule: #1A1A18;
+  --rule-soft: #D6D2C7;
+  --accent: #D2371E;
+  --accent-dark: #A82815;
+  --accent-soft: #FCE8E3;
+  --positive: #1F4D2C;
+  --positive-soft: #DDE9DE;
+  --shadow: 0 1px 3px rgba(15,15,14,0.04), 0 8px 24px rgba(15,15,14,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ============ TYPOGRAPHY ============ */
+.display {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 144;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.display-italic {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 144;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "tnum" 1;
+}
+h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ============ LAYOUT ============ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+section {
+  padding: 96px 0;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+section:first-of-type { border-top: none; }
+
+.section-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-kicker::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+.section-title {
+  font-size: clamp(48px, 7vw, 96px);
+  margin-bottom: 32px;
+  max-width: 900px;
+}
+.section-lead {
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+
+/* ============ HEADER ============ */
+.head-bar {
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.head-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+.head-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.head-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.head-status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ============ HERO ============ */
+.hero {
+  padding: 80px 0 120px;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: none;
+}
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-kicker::before, .hero-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 120px;
+}
+.hero-number {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: "opsz" 144;
+  font-weight: 500;
+  font-size: clamp(120px, 24vw, 360px);
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  margin-bottom: 32px;
+}
+.hero-number .accent { color: var(--accent); font-style: italic; }
+.hero-headline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 960px;
+  margin-bottom: 32px;
+}
+.hero-sub {
+  font-size: 20px;
+  color: var(--ink-2);
+  max-width: 640px;
+  line-height: 1.5;
+}
+.hero-scroll {
+  margin-top: 96px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-scroll::after {
+  content: "↓";
+  font-family: 'IBM Plex Sans', sans-serif;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ============ PANORAMA: CIFRAS GRID ============ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 64px;
+}
+.stat-cell {
+  background: var(--bg);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+.stat-cell .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.stat-cell .value {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 24px 0 8px;
+}
+.stat-cell .value.warn { color: var(--accent); }
+.stat-cell .note {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+/* ============ PIRÁMIDE LEALTAD ============ */
+.loyalty-section { background: var(--bg); }
+.loyalty-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.loyalty-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.loyalty-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 90px;
+  gap: 24px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.loyalty-row:last-child { border-bottom: none; }
+.loyalty-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+.loyalty-name.lover { color: var(--accent); font-style: italic; }
+.loyalty-name.loyal { color: var(--accent); }
+.loyalty-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+.loyalty-bar {
+  height: 36px;
+  background: var(--ink);
+  position: relative;
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.loyalty-bar.fly { background: #5A5A55; }
+.loyalty-bar.casual { background: #4A4A47; }
+.loyalty-bar.loyal { background: var(--accent); }
+.loyalty-bar.lover { background: var(--accent-dark); }
+.loyalty-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+}
+.loyalty-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.loyalty-insight {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 40px;
+  position: sticky;
+  top: 100px;
+}
+.loyalty-insight h3 {
+  font-size: 28px;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.equivalence {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.equivalence:last-of-type { border-bottom: 1px solid var(--rule-soft); }
+.eq-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+}
+.eq-text {
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+/* ============ TRÁFICO BARRAS ============ */
+.traffic-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 48px;
+  border-top: 1px solid var(--rule);
+}
+.traffic-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 280px;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: center;
+}
+.traffic-row.highlight {
+  background: var(--accent-soft);
+  margin: 0 -16px;
+  padding: 28px 16px;
+}
+.traffic-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+.traffic-name .sub {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.traffic-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.traffic-bar {
+  height: 12px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.traffic-bar.direct { background: var(--accent); height: 24px; }
+.traffic-bar.email { background: var(--accent-dark); height: 24px; }
+.traffic-users {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 100px;
+}
+.traffic-metrics {
+  display: flex;
+  gap: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.traffic-metric .l {
+  display: block;
+  color: var(--ink-3);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.traffic-metric .v { font-size: 18px; font-weight: 500; }
+.traffic-metric .v.big { color: var(--accent); font-size: 22px; }
+
+/* ============ COMPARATIVA SEMANARIO ============ */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+.compare-side {
+  background: var(--bg-card);
+  padding: 48px 40px;
+}
+.compare-side.winner {
+  background: var(--ink);
+  color: var(--bg);
+}
+.compare-side.winner .compare-name { color: var(--bg); }
+.compare-side.winner .compare-divisor { background: rgba(242,239,231,0.15); }
+.compare-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.compare-h {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+.compare-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.compare-stat {
+  display: flex;
+  flex-direction: column;
+}
+.compare-stat .l {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.compare-side.winner .compare-stat .l { color: rgba(242,239,231,0.6); }
+.compare-stat .v {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.compare-stat .v .unit {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--ink-3);
+  margin-left: 8px;
+}
+.compare-side.winner .compare-stat .v .unit { color: rgba(242,239,231,0.5); }
+.compare-divisor { height: 1px; background: var(--rule-soft); margin: 8px 0; }
+.compare-ratio {
+  text-align: center;
+  padding: 32px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+.compare-ratio-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(64px, 8vw, 120px);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+.compare-ratio-text {
+  font-size: 20px;
+  color: var(--ink-2);
+  margin-top: 16px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.45;
+}
+
+/* ============ PIEZAS QUE FUNCIONAN ============ */
+.pieces-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+.piece-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 80px 1fr 200px;
+  gap: 32px;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+.piece-item:hover { background: var(--bg-card); margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+.piece-rank {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 48px;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+.piece-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.piece-meta {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.piece-meta .m { display: flex; flex-direction: column; align-items: flex-end; }
+.piece-meta .m .l {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.piece-meta .m .v { font-size: 18px; font-weight: 500; }
+.piece-meta .m .v.acc { color: var(--accent); }
+
+/* ============ TEMAS LOCALES ============ */
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.theme-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 32px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.theme-card:hover { transform: translateY(-4px); }
+.theme-card-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.theme-card-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.theme-card-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 20px;
+}
+.theme-card-stat {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.theme-card-stat .l { color: var(--ink-3); }
+.theme-card-stat .v { font-weight: 500; }
+
+/* ============ AUTORES ============ */
+.authors-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 64px;
+}
+.authors-block h3 {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 28px;
+  margin-bottom: 32px;
+  line-height: 1.15;
+}
+.author-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.author-row:first-of-type { border-top: 1px solid var(--rule); }
+.author-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+.author-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  text-align: right;
+  font-weight: 500;
+}
+.author-stat.rfv-high { color: var(--accent); font-size: 16px; }
+.author-stat.rfv-low { color: var(--ink-3); }
+.author-row-header {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  gap: 16px;
+  padding: 8px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.author-row-header > div:not(:first-child) { text-align: right; }
+
+/* ============ DÍA / SEMANA ============ */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 48px;
+}
+.day-cell {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 28px 16px;
+  text-align: left;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day-cell.peak {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.day-cell.peak .day-label,
+.day-cell.peak .day-stat-l { color: rgba(242,239,231,0.6); }
+.day-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.day-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.day-score-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 56px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 16px 0 4px;
+}
+.day-cell.peak .day-score-num { color: var(--accent); }
+.day-score-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.day-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+}
+.day-stat {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.day-stat-l { color: var(--ink-3); }
+
+/* ============ PARETO ============ */
+.pareto-section { background: var(--bg-dark); color: var(--bg); padding: 120px 0; }
+.pareto-section .section-kicker { color: var(--accent); }
+.pareto-section .section-title { color: var(--bg); }
+.pareto-section .section-lead { color: rgba(242,239,231,0.7); }
+.pareto-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.pareto-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 32px;
+  align-items: center;
+}
+.pareto-label {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+.pareto-label .sub {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(242,239,231,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 6px;
+}
+.pareto-bar-track {
+  height: 48px;
+  background: rgba(242,239,231,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.pareto-bar {
+  height: 100%;
+  background: var(--accent);
+  position: relative;
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pareto-result {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+.pareto-result .of {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(242,239,231,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+/* ============ DESPILFARRO QUADRANT ============ */
+.waste-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.waste-cell {
+  background: var(--bg);
+  padding: 40px 28px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.waste-cell.warn { background: var(--accent-soft); }
+.waste-cell.good { background: var(--positive-soft); }
+.waste-pct {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+.waste-cell.warn .waste-pct { color: var(--accent); font-style: italic; }
+.waste-cell.good .waste-pct { color: var(--positive); }
+.waste-pct .sign {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  vertical-align: top;
+  margin-left: -8px;
+}
+.waste-label {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-top: 16px;
+  line-height: 1.2;
+}
+.waste-note {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+/* ============ HECHOS LISTA ============ */
+.facts-list {
+  border-top: 1px solid var(--rule);
+}
+.fact-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 48px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.fact-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 64px;
+  line-height: 0.9;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+}
+.fact-text {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(22px, 2.5vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.fact-text strong { color: var(--accent); font-style: italic; font-weight: 500; }
+.fact-text em {
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 0.85em;
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+/* ============ CIERRE ============ */
+.closing {
+  background: var(--bg-dark);
+  color: var(--bg);
+  padding: 160px 0;
+  text-align: left;
+  border-top: none;
+}
+.closing-question {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 1100px;
+  margin-bottom: 48px;
+}
+.closing-question .accent { color: var(--accent); }
+.closing-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 48px;
+}
+.closing-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: rgba(242,239,231,0.5);
+  margin-top: 96px;
+  border-top: 1px solid rgba(242,239,231,0.15);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ============ ANIMACIONES SCROLL ============ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-fast { transition-duration: 0.6s; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .loyalty-grid { grid-template-columns: 1fr; gap: 48px; }
+  .loyalty-insight { position: static; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .themes-grid { grid-template-columns: repeat(2, 1fr); }
+  .authors-split { grid-template-columns: 1fr; gap: 48px; }
+  .days-grid { grid-template-columns: repeat(4, 1fr); }
+  .waste-grid { grid-template-columns: repeat(2, 1fr); }
+  .traffic-row { grid-template-columns: 120px 1fr; }
+  .traffic-row > .traffic-metrics { grid-column: 1 / -1; padding-left: 152px; padding-top: 8px; }
+}
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  section { padding: 64px 0; }
+  .hero { padding: 48px 0 80px; }
+  .hero-kicker::before, .hero-kicker::after { display: none; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .stat-cell { min-height: 180px; padding: 28px 24px; }
+  .themes-grid { grid-template-columns: 1fr; }
+  .days-grid { grid-template-columns: repeat(2, 1fr); }
+  .waste-grid { grid-template-columns: 1fr; }
+  .traffic-row { grid-template-columns: 1fr; gap: 12px; padding: 20px 0; }
+  .traffic-row > .traffic-metrics { padding-left: 0; gap: 20px; }
+  .traffic-name { font-size: 20px; }
+  .piece-item { grid-template-columns: 60px 1fr; gap: 16px; }
+  .piece-item .piece-meta { grid-column: 1 / -1; padding-left: 76px; flex-wrap: wrap; }
+  .fact-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .pareto-row { grid-template-columns: 1fr; gap: 12px; }
+  .pareto-result { font-size: 32px; }
+  .author-row, .author-row-header { grid-template-columns: 1fr 60px 60px; gap: 8px; }
+  .compare-side { padding: 32px 24px; }
+  .compare-stat .v { font-size: 36px; }
+  .loyalty-row { grid-template-columns: 80px 1fr 70px; gap: 12px; }
+}
+
+/* utilities */
+.spacer-l { height: 64px; }
+.spacer-xl { height: 96px; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEAD BAR ============ -->
+<div class="head-bar">
+  <div class="container head-bar-inner">
+    <div class="brand">Vanguardia · Diagnóstico interno</div>
+    <div class="head-meta head-status">Q1 2026 · Documento crítico</div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-kicker reveal">El espejo · Análisis crudo de la operación digital</div>
+    <div class="hero-number reveal" id="hero-num"><span class="accent">10,320</span></div>
+    <div class="hero-headline reveal">
+      Son nuestros lectores más fieles. Equivalen a <em>2.3&nbsp;millones</em> de visitantes de paso. Y estamos invirtiendo casi nada en ellos.
+    </div>
+    <div class="hero-sub reveal">
+      Este es el diagnóstico interno de lo que producimos, cómo se consume y para quién está funcionando. Los datos son del Q1 2026. La interpretación es nuestra. Y la conversación que sigue, también.
+    </div>
+    <div class="hero-scroll reveal">Continuar lectura</div>
+  </div>
+</section>
+
+<!-- ============ PANORAMA ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">01 · El panorama</div>
+    <h2 class="section-title display reveal">El tamaño real de lo que producimos.</h2>
+    <p class="section-lead reveal">
+      Cifras globales del periodo. Cada número está en el sistema, no son estimaciones. La lectura honesta de estos cinco datos define todo lo que sigue.
+    </p>
+
+    <div class="stat-grid reveal">
+      <div class="stat-cell">
+        <div class="label">Usuarios únicos totales</div>
+        <div class="value mono" data-count="7990000">7.99 M</div>
+        <div class="note">Tráfico bruto del periodo. Incluye bots, accidentes y visitas únicas que jamás regresan.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Páginas vistas</div>
+        <div class="value mono">20.55 M</div>
+        <div class="note">2.57 PV por usuario promedio. La mediana real es de 1 sola página por sesión.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Artículos publicados</div>
+        <div class="value mono">25,577</div>
+        <div class="note">≈ 171 piezas al día. 14 piezas por hora en jornada de 12 h.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Leídas a profundidad</div>
+        <div class="value warn mono">161</div>
+        <div class="note">De las 5,000 piezas más leídas. Apenas el 3.2% del top.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Tráfico de bots</div>
+        <div class="value warn mono">7.93%</div>
+        <div class="note">634,504 usuarios desde Singapore, China, Finlandia, Rusia con duración &lt;30s. No son lectores.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Duración promedio</div>
+        <div class="value mono">312 s</div>
+        <div class="note">5 minutos por usuario en total. Pero distribuidos así: 153 s para el New, 33,440 s para el Lover.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">RFV promedio</div>
+        <div class="value mono">18.22</div>
+        <div class="note">El RFV (Recency-Frequency-Value) mide la fidelidad real. Bajo 10 = tráfico de paso. Sobre 40 = núcleo.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="label">Scroll promedio</div>
+        <div class="value mono">24.64%</div>
+        <div class="note">Una cuarta parte de la página. El resto del contenido nunca se ve.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIRÁMIDE DE LEALTAD ============ -->
+<section class="loyalty-section">
+  <div class="container">
+    <div class="section-kicker reveal">02 · La pirámide invisible</div>
+    <h2 class="section-title display reveal">El 0.06% que sostiene el 6.12%.</h2>
+    <p class="section-lead reveal">
+      Los segmentos de lealtad muestran quién regresa, cuánto lee y cuánto vale. La distribución es brutalmente desigual. Y casi nunca hablamos de los segmentos que de verdad importan.
+    </p>
+
+    <div class="loyalty-grid">
+      <div class="loyalty-bars reveal">
+        <div class="loyalty-row">
+          <div class="loyalty-name">New</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar" style="width: 92%"></div><div class="loyalty-pct">40.35%</div></div>
+          <div class="loyalty-value">7,365,119</div>
+        </div>
+        <div class="loyalty-row">
+          <div class="loyalty-name">Fly by</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar fly" style="width: 16%"></div><div class="loyalty-pct">7.03%</div></div>
+          <div class="loyalty-value">1,282,343</div>
+        </div>
+        <div class="loyalty-row">
+          <div class="loyalty-name">Won back</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar fly" style="width: 11%"></div><div class="loyalty-pct">4.91%</div></div>
+          <div class="loyalty-value">897,023</div>
+        </div>
+        <div class="loyalty-row">
+          <div class="loyalty-name">Casual</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar casual" style="width: 8%"></div><div class="loyalty-pct">3.27%</div></div>
+          <div class="loyalty-value">596,869</div>
+        </div>
+        <div class="loyalty-row">
+          <div class="loyalty-name loyal">Loyal</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar loyal" style="width: 1.2%; min-width: 6px"></div><div class="loyalty-pct">0.26%</div></div>
+          <div class="loyalty-value">48,268</div>
+        </div>
+        <div class="loyalty-row">
+          <div class="loyalty-name lover">Lover</div>
+          <div class="loyalty-bar-wrap"><div class="loyalty-bar lover" style="width: 0.3%; min-width: 4px"></div><div class="loyalty-pct">0.06%</div></div>
+          <div class="loyalty-value">10,320</div>
+        </div>
+      </div>
+
+      <div class="loyalty-insight reveal">
+        <h3>Un Lover lee como 219 visitantes nuevos juntos.</h3>
+        <p style="color: var(--ink-2); font-size: 16px; margin-bottom: 16px;">Equivalencias medidas en tiempo, engagement y pageviews:</p>
+        <div class="equivalence">
+          <div class="eq-num">×219</div>
+          <div class="eq-text"><strong>1 Lover = 219 New</strong> en duración total de lectura</div>
+        </div>
+        <div class="equivalence">
+          <div class="eq-num">×211</div>
+          <div class="eq-text"><strong>1 Lover = 211 New</strong> en engagement activo</div>
+        </div>
+        <div class="equivalence">
+          <div class="eq-num">×185</div>
+          <div class="eq-text"><strong>1 Lover = 185 New</strong> en páginas vistas</div>
+        </div>
+        <p style="color: var(--ink); font-size: 18px; margin-top: 24px; font-family: 'Fraunces', serif; font-style: italic; line-height: 1.3;">
+          58,588 personas (Loyal + Lover) generan el 18.84% de todos los pageviews del medio. Son el 0.73% del tráfico. Son el negocio real.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRÁFICO ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">03 · El tráfico real</div>
+    <h2 class="section-title display reveal">Quien teclea el dominio se queda <em class="display-italic" style="color: var(--accent)">18.8 minutos</em>.<br>Quien viene de Google se va en <em class="display-italic" style="color: var(--accent)">4 minutos</em>.</h2>
+    <p class="section-lead reveal">
+      Cinco canales producen el tráfico de Vanguardia. Sólo dos producen lectores reales. La diferencia entre uno y otro es de un orden de magnitud, no de matices.
+    </p>
+
+    <div class="traffic-chart reveal">
+      <div class="traffic-row">
+        <div class="traffic-name">Search<span class="sub">Google y otros buscadores</span></div>
+        <div class="traffic-bar-container">
+          <div class="traffic-bar" style="width: 100%"></div>
+        </div>
+        <div class="traffic-metrics">
+          <div class="traffic-metric"><span class="l">Usuarios</span><span class="v">4.61 M</span></div>
+          <div class="traffic-metric"><span class="l">RFV</span><span class="v">9.15</span></div>
+          <div class="traffic-metric"><span class="l">Duración</span><span class="v">241 s</span></div>
+        </div>
+      </div>
+      <div class="traffic-row">
+        <div class="traffic-name">Social<span class="sub">Facebook, X, IG, TikTok</span></div>
+        <div class="traffic-bar-container">
+          <div class="traffic-bar" style="width: 63%"></div>
+        </div>
+        <div class="traffic-metrics">
+          <div class="traffic-metric"><span class="l">Usuarios</span><span class="v">2.91 M</span></div>
+          <div class="traffic-metric"><span class="l">RFV</span><span class="v">13.48</span></div>
+          <div class="traffic-metric"><span class="l">Duración</span><span class="v">305 s</span></div>
+        </div>
+      </div>
+      <div class="traffic-row highlight">
+        <div class="traffic-name">Directo<span class="sub">Tecla el dominio o tiene marcador</span></div>
+        <div class="traffic-bar-container">
+          <div class="traffic-bar direct" style="width: 8%; min-width: 32px"></div>
+        </div>
+        <div class="traffic-metrics">
+          <div class="traffic-metric"><span class="l">Usuarios</span><span class="v">350,989</span></div>
+          <div class="traffic-metric"><span class="l">RFV</span><span class="v big">56.44</span></div>
+          <div class="traffic-metric"><span class="l">Duración</span><span class="v big">1,127 s</span></div>
+        </div>
+      </div>
+      <div class="traffic-row">
+        <div class="traffic-name">IA<span class="sub">ChatGPT, Perplexity, Gemini</span></div>
+        <div class="traffic-bar-container">
+          <div class="traffic-bar" style="width: 1.2%; min-width: 16px"></div>
+        </div>
+        <div class="traffic-metrics">
+          <div class="traffic-metric"><span class="l">Usuarios</span><span class="v">55,093</span></div>
+          <div class="traffic-metric"><span class="l">RFV</span><span class="v">5.56</span></div>
+          <div class="traffic-metric"><span class="l">Duración</span><span class="v">236 s</span></div>
+        </div>
+      </div>
+      <div class="traffic-row highlight">
+        <div class="traffic-name">Email<span class="sub">Newsletters y correos directos</span></div>
+        <div class="traffic-bar-container">
+          <div class="traffic-bar email" style="width: 0.2%; min-width: 8px"></div>
+        </div>
+        <div class="traffic-metrics">
+          <div class="traffic-metric"><span class="l">Usuarios</span><span class="v">8,939</span></div>
+          <div class="traffic-metric"><span class="l">RFV</span><span class="v big">35.93</span></div>
+          <div class="traffic-metric"><span class="l">Duración</span><span class="v big">935 s</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-left: 3px solid var(--accent); padding: 24px 32px; background: var(--bg-card); margin-top: 48px;" class="reveal">
+      <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; line-height: 1.4; color: var(--ink);">
+        Search es 13.1× más grande que directo. Pero directo genera lectores que duran 4.7× más tiempo y tienen RFV 6.2× mayor. El problema no es atraer usuarios. Es atraer lectores.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL DESPILFARRO QUADRANT ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">04 · La realidad de lo que publicamos</div>
+    <h2 class="section-title display reveal">De cada 100 piezas que publicamos, sólo 3 se leen completas.</h2>
+    <p class="section-lead reveal">
+      Tomamos las 5,000 URLs más leídas del año en curso. Las clasificamos por su comportamiento real, no por la intención editorial. El resultado es esto.
+    </p>
+
+    <div class="waste-grid reveal">
+      <div class="waste-cell warn">
+        <div>
+          <div class="waste-pct">3.2<span class="sign">%</span></div>
+          <div class="waste-label">Lectura profunda</div>
+        </div>
+        <div class="waste-note">Sólo 161 piezas de 5,000 superan los 300 s de lectura y 35% de scroll. Son las que sí construyen lectores.</div>
+      </div>
+      <div class="waste-cell">
+        <div>
+          <div class="waste-pct">17.7<span class="sign">%</span></div>
+          <div class="waste-label">Lectura efectiva</div>
+        </div>
+        <div class="waste-note">886 piezas que se leen al menos 3 minutos y a más de un cuarto de scroll. Aceptable, no notable.</div>
+      </div>
+      <div class="waste-cell good">
+        <div>
+          <div class="waste-pct">40.5<span class="sign">%</span></div>
+          <div class="waste-label">Fidelizan a quien<br>sí lee</div>
+        </div>
+        <div class="waste-note">2,024 piezas con RFV mayor a 25. Cuando alguien las encuentra, regresa por más. La buena noticia escondida.</div>
+      </div>
+      <div class="waste-cell warn">
+        <div>
+          <div class="waste-pct">3.5<span class="sign">%</span></div>
+          <div class="waste-label">Clickbait puro</div>
+        </div>
+        <div class="waste-note">176 piezas con duración menor a 120 s y RFV menor a 5. Cubren el costo del servidor pero envenenan la marca.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARETO BRUTAL ============ -->
+<section class="pareto-section">
+  <div class="container">
+    <div class="section-kicker reveal">05 · Concentración extrema</div>
+    <h2 class="section-title display reveal">50 piezas generan el <em class="display-italic" style="color: var(--accent)">58%</em> de todos los usuarios.</h2>
+    <p class="section-lead reveal">
+      Las 25,577 piezas que producimos no compiten en pie de igualdad. Una minoría minúscula concentra toda la atención. El resto es relleno que mide poco y dura menos.
+    </p>
+
+    <div class="pareto-bars reveal">
+      <div class="pareto-row">
+        <div class="pareto-label">Top 1%<span class="sub">50 piezas</span></div>
+        <div class="pareto-bar-track"><div class="pareto-bar" style="width: 57.81%"></div></div>
+        <div class="pareto-result">57.81%<span class="of">de usuarios totales</span></div>
+      </div>
+      <div class="pareto-row">
+        <div class="pareto-label">Top 5%<span class="sub">250 piezas</span></div>
+        <div class="pareto-bar-track"><div class="pareto-bar" style="width: 69.55%"></div></div>
+        <div class="pareto-result">69.55%<span class="of">de usuarios totales</span></div>
+      </div>
+      <div class="pareto-row">
+        <div class="pareto-label">Top 10%<span class="sub">500 piezas</span></div>
+        <div class="pareto-bar-track"><div class="pareto-bar" style="width: 75.64%"></div></div>
+        <div class="pareto-result">75.64%<span class="of">de usuarios totales</span></div>
+      </div>
+      <div class="pareto-row">
+        <div class="pareto-label">Top 20%<span class="sub">1,000 piezas</span></div>
+        <div class="pareto-bar-track"><div class="pareto-bar" style="width: 82.38%"></div></div>
+        <div class="pareto-result">82.38%<span class="of">de usuarios totales</span></div>
+      </div>
+      <div class="pareto-row">
+        <div class="pareto-label">Top 50%<span class="sub">2,500 piezas</span></div>
+        <div class="pareto-bar-track"><div class="pareto-bar" style="width: 93.20%"></div></div>
+        <div class="pareto-result">93.20%<span class="of">de usuarios totales</span></div>
+      </div>
+    </div>
+
+    <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 28px; line-height: 1.3; max-width: 800px; margin-top: 80px; color: rgba(242,239,231,0.9);" class="reveal">
+      Producir 25,577 piezas para que sólo 50 generen el 58% del tráfico no es estrategia editorial. Es desperdicio estructural.
+    </p>
+  </div>
+</section>
+
+<!-- ============ SEMANARIO VS INFORMACIÓN ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">06 · La prueba ya está dentro de casa</div>
+    <h2 class="section-title display reveal">El Semanario, con 16 piezas, supera al resto del medio.</h2>
+    <p class="section-lead reveal">
+      No es teoría. Es lo que está pasando ahora mismo. La sección con menos producción tiene la mayor eficiencia editorial compuesta del medio. Compárese contra Información, la sección masiva.
+    </p>
+
+    <div class="compare-grid reveal">
+      <div class="compare-side">
+        <div class="compare-name">Sección Información</div>
+        <div class="compare-h">Volumen industrial.<br>Lectura superficial.</div>
+        <div class="compare-stats">
+          <div class="compare-stat">
+            <div class="l">Piezas publicadas</div>
+            <div class="v">1,004</div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">Usuarios sumados</div>
+            <div class="v">3.27<span class="unit">millones</span></div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">RFV promedio</div>
+            <div class="v">7.16</div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">Duración promedio</div>
+            <div class="v">212<span class="unit">s</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="compare-side winner">
+        <div class="compare-name">Sección Semanario</div>
+        <div class="compare-h">16 piezas narrativas.<br>Construyen lectores.</div>
+        <div class="compare-stats">
+          <div class="compare-stat">
+            <div class="l">Piezas publicadas</div>
+            <div class="v">16</div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">Usuarios sumados</div>
+            <div class="v">35,155</div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">RFV promedio</div>
+            <div class="v">22.99</div>
+          </div>
+          <div class="compare-divisor"></div>
+          <div class="compare-stat">
+            <div class="l">Duración promedio</div>
+            <div class="v">338<span class="unit">s</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-ratio reveal">
+      <div class="compare-ratio-num">50,513</div>
+      <div class="compare-ratio-text">
+        Es el indicador de eficiencia editorial del Semanario (RFV × usuarios ÷ piezas). El de Información es <strong style="color: var(--accent);">23,341</strong>. El Semanario produce 1.6% de las piezas y es más del doble de eficiente en construir lectores reales.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOP PIEZAS NARRATIVAS ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">07 · Las piezas que sí están construyendo lectores</div>
+    <h2 class="section-title display reveal">Diez ejemplos de lo que sí funcionó.</h2>
+    <p class="section-lead reveal">
+      No son hipótesis. Son piezas publicadas este año, en este medio, con estos lectores. Tienen un patrón claro: historia con sujeto, lugar específico, voz reconocible, tiempo de reportería.
+    </p>
+
+    <div class="pieces-list reveal">
+      <div class="piece-item">
+        <div class="piece-rank">01</div>
+        <div class="piece-title">Hércules: un pueblo que va quedando solo</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">7,654</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">5:30</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">17.2</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">02</div>
+        <div class="piece-title">Un migrante deportado regresa a casa 35 años después</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">2,249</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">7:00</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">35.7</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">03</div>
+        <div class="piece-title">Los rostros de la crisis de agua en Torreón</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,979</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">3:30</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v">15.9</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">04</div>
+        <div class="piece-title">La leyenda del profesor Berrueto</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,928</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">7:12</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">30.3</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">05</div>
+        <div class="piece-title">El costo social del colapso de AHMSA</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,807</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">5:01</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">28.5</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">06</div>
+        <div class="piece-title">Entre abusos y sobrecostos: así opera el sistema de seguros médicos en México</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,793</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">5:38</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">27.8</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">07</div>
+        <div class="piece-title">Pinocho, el hombre que cuida un arroyo por mandato divino</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,552</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">4:10</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">39.5</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">08</div>
+        <div class="piece-title">Las vulkas de un pueblo atendidas por sordomudos: una historia sobre ruedas</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,236</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">6:21</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">45.0</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">09</div>
+        <div class="piece-title">Voces de Allende: a 15 años del terror</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,154</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">8:45</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">22.7</span></div>
+        </div>
+      </div>
+      <div class="piece-item">
+        <div class="piece-rank">10</div>
+        <div class="piece-title">Los huesos hablan: Pasta de Conchos 20 años después</div>
+        <div class="piece-meta">
+          <div class="m"><span class="l">Usuarios</span><span class="v">1,136</span></div>
+          <div class="m"><span class="l">Duración</span><span class="v">4:01</span></div>
+          <div class="m"><span class="l">RFV</span><span class="v acc">34.8</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEMAS LOCALES ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">08 · Temas que el lector regional sí premia</div>
+    <h2 class="section-title display reveal">Cuando cubrimos lo nuestro con tiempo y método, el lector responde.</h2>
+    <p class="section-lead reveal">
+      Cinco territorios temáticos. Todos con piezas publicadas en lo que va del año. Todos con desempeño sobre el promedio del medio. Todos accesibles con la operación que ya tenemos.
+    </p>
+
+    <div class="themes-grid reveal">
+      <div class="theme-card">
+        <div class="theme-card-num">11</div>
+        <div class="theme-card-name">Crónicas de barrios e historia urbana</div>
+        <div class="theme-card-stats">
+          <div class="theme-card-stat"><span class="l">Usuarios</span><span class="v">16,585</span></div>
+          <div class="theme-card-stat"><span class="l">Duración prom.</span><span class="v">4:04</span></div>
+          <div class="theme-card-stat"><span class="l">RFV promedio</span><span class="v" style="color: var(--accent)">26.2</span></div>
+          <div class="theme-card-stat"><span class="l">Scroll prom.</span><span class="v">35.6%</span></div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-num">30</div>
+        <div class="theme-card-name">Desaparecidos, violencia, restitución</div>
+        <div class="theme-card-stats">
+          <div class="theme-card-stat"><span class="l">Usuarios</span><span class="v">35,439</span></div>
+          <div class="theme-card-stat"><span class="l">Duración prom.</span><span class="v">3:10</span></div>
+          <div class="theme-card-stat"><span class="l">RFV promedio</span><span class="v" style="color: var(--accent)">27.5</span></div>
+          <div class="theme-card-stat"><span class="l">Scroll prom.</span><span class="v">22.6%</span></div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-num">44</div>
+        <div class="theme-card-name">Minería, trabajo, accidentes industriales</div>
+        <div class="theme-card-stats">
+          <div class="theme-card-stat"><span class="l">Usuarios</span><span class="v">64,199</span></div>
+          <div class="theme-card-stat"><span class="l">Duración prom.</span><span class="v">2:52</span></div>
+          <div class="theme-card-stat"><span class="l">RFV promedio</span><span class="v" style="color: var(--accent)">24.1</span></div>
+          <div class="theme-card-stat"><span class="l">Scroll prom.</span><span class="v">29.8%</span></div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-num">14</div>
+        <div class="theme-card-name">Historia familiar y biografía local</div>
+        <div class="theme-card-stats">
+          <div class="theme-card-stat"><span class="l">Usuarios</span><span class="v">20,384</span></div>
+          <div class="theme-card-stat"><span class="l">Duración prom.</span><span class="v">4:07</span></div>
+          <div class="theme-card-stat"><span class="l">RFV promedio</span><span class="v" style="color: var(--accent)">22.4</span></div>
+          <div class="theme-card-stat"><span class="l">Scroll prom.</span><span class="v">30.3%</span></div>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-num">79</div>
+        <div class="theme-card-name">Agua y medio ambiente regional</div>
+        <div class="theme-card-stats">
+          <div class="theme-card-stat"><span class="l">Usuarios</span><span class="v">576,664</span></div>
+          <div class="theme-card-stat"><span class="l">Duración prom.</span><span class="v">2:34</span></div>
+          <div class="theme-card-stat"><span class="l">RFV promedio</span><span class="v" style="color: var(--accent)">20.1</span></div>
+          <div class="theme-card-stat"><span class="l">Scroll prom.</span><span class="v">21.7%</span></div>
+        </div>
+      </div>
+      <div class="theme-card" style="background: var(--ink); color: var(--bg); border-color: var(--ink);">
+        <div class="theme-card-num" style="color: var(--accent)">→</div>
+        <div class="theme-card-name" style="color: var(--bg);">El patrón es claro</div>
+        <div style="font-size: 14px; color: rgba(242,239,231,0.7); line-height: 1.5; margin-top: 24px;">
+          Cuando cubrimos con método narrativo, el RFV promedio sube de <strong style="color: var(--accent);">18.22 global</strong> a <strong style="color: var(--accent);">20–28 temático</strong>. El lector regional reconoce el oficio.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTORES ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">09 · La firma como activo</div>
+    <h2 class="section-title display reveal">Quien menos publica, más fideliza.</h2>
+    <p class="section-lead reveal">
+      Los columnistas y los reporteros más prolíficos tienen perfiles opuestos. Quien firma poco y profundo tiene un RFV cinco a diez veces mayor que quien firma todos los días.
+    </p>
+
+    <div class="authors-split">
+      <div class="authors-block reveal">
+        <h3>Quienes más fidelizan</h3>
+        <div class="author-row-header">
+          <div>Autor</div><div>Piezas</div><div>RFV</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Catón</div>
+          <div class="author-stat">146</div>
+          <div class="author-stat rfv-high">55.4</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Federico Berrueto</div>
+          <div class="author-stat">81</div>
+          <div class="author-stat rfv-high">54.2</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Enrique Abasolo</div>
+          <div class="author-stat">39</div>
+          <div class="author-stat rfv-high">51.7</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Raymundo Riva Palacio</div>
+          <div class="author-stat">97</div>
+          <div class="author-stat rfv-high">45.9</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Carlos Loret de Mola</div>
+          <div class="author-stat">58</div>
+          <div class="author-stat rfv-high">42.0</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Luis García Abusaíd</div>
+          <div class="author-stat">51</div>
+          <div class="author-stat rfv-high">46.6</div>
+        </div>
+      </div>
+
+      <div class="authors-block reveal">
+        <h3>Quienes más publican</h3>
+        <div class="author-row-header">
+          <div>Autor</div><div>Piezas</div><div>RFV</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Carlos Martínez</div>
+          <div class="author-stat">900</div>
+          <div class="author-stat rfv-low">6.6</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">El Universal <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3);">(agencia)</span></div>
+          <div class="author-stat">1,638</div>
+          <div class="author-stat rfv-low">8.2</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Reforma <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--ink-3);">(agencia)</span></div>
+          <div class="author-stat">1,138</div>
+          <div class="author-stat rfv-low">8.2</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Alejandro Morteo</div>
+          <div class="author-stat">975</div>
+          <div class="author-stat rfv-low">10.2</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Rebeca Gallardo</div>
+          <div class="author-stat">427</div>
+          <div class="author-stat rfv-low">8.2</div>
+        </div>
+        <div class="author-row">
+          <div class="author-name">Apolonio Alvarado</div>
+          <div class="author-stat">835</div>
+          <div class="author-stat rfv-low">14.1</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border: 1px solid var(--rule); padding: 32px 40px; background: var(--bg-card); display: flex; gap: 48px; align-items: center; flex-wrap: wrap;" class="reveal">
+      <div style="flex: 0 0 auto;">
+        <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 72px; line-height: 1; color: var(--accent); letter-spacing: -0.03em;">×7</div>
+      </div>
+      <div style="flex: 1; min-width: 280px;">
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; line-height: 1.3;">
+          Los columnistas firmados tienen un RFV promedio de 50. Los reporteros que cubren agenda diaria, de 7. Es una diferencia de siete veces. La voz reconocible es el activo más subexplotado del medio.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DÍA DE LA SEMANA ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">10 · Cuándo se lee de verdad</div>
+    <h2 class="section-title display reveal">No publicamos cuando hay quien nos lee.</h2>
+    <p class="section-lead reveal">
+      El martes tiene más volumen total. El lunes y el jueves tienen lectores que sí entran a la página. La diferencia entre publicar para volumen y publicar para profundidad se mide en cada día de la semana.
+    </p>
+
+    <div class="days-grid reveal">
+      <div class="day-cell peak">
+        <div>
+          <div class="day-name">Lunes</div>
+          <div class="day-label">Pico de profundidad</div>
+          <div class="day-score-num">5.04</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>19.49</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>25.85%</span></div>
+        </div>
+      </div>
+      <div class="day-cell">
+        <div>
+          <div class="day-name">Martes</div>
+          <div class="day-label">Más volumen, menos lectura</div>
+          <div class="day-score-num">4.14</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>16.41</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>25.22%</span></div>
+        </div>
+      </div>
+      <div class="day-cell">
+        <div>
+          <div class="day-name">Miércoles</div>
+          <div class="day-label">Mantenimiento</div>
+          <div class="day-score-num">4.62</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>18.69</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>24.74%</span></div>
+        </div>
+      </div>
+      <div class="day-cell peak">
+        <div>
+          <div class="day-name">Jueves</div>
+          <div class="day-label">Pico de scroll</div>
+          <div class="day-score-num">4.71</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>18.37</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>25.62%</span></div>
+        </div>
+      </div>
+      <div class="day-cell">
+        <div>
+          <div class="day-name">Viernes</div>
+          <div class="day-label">Cae el fin de semana</div>
+          <div class="day-score-num">4.49</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>18.63</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>24.12%</span></div>
+        </div>
+      </div>
+      <div class="day-cell">
+        <div>
+          <div class="day-name">Sábado</div>
+          <div class="day-label">Mínimo</div>
+          <div class="day-score-num">3.88</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>17.52</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>22.16%</span></div>
+        </div>
+      </div>
+      <div class="day-cell">
+        <div>
+          <div class="day-name">Domingo</div>
+          <div class="day-label">Ventana de núcleo fiel</div>
+          <div class="day-score-num">4.49</div>
+          <div class="day-score-label">Score profundidad</div>
+        </div>
+        <div class="day-stats">
+          <div class="day-stat"><span class="day-stat-l">RFV</span><span>18.89</span></div>
+          <div class="day-stat"><span class="day-stat-l">Scroll</span><span>23.79%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; line-height: 1.4; color: var(--ink-2); max-width: 720px; margin-top: 32px;" class="reveal">
+      Score = scroll × RFV. Es la métrica más honesta para saber qué día el lector lee con atención. Lunes 7 am y jueves 7 am son las dos ventanas naturales para publicar piezas que merecen ser leídas.
+    </p>
+  </div>
+</section>
+
+<!-- ============ LOS 11 HECHOS ============ -->
+<section>
+  <div class="container">
+    <div class="section-kicker reveal">11 · Síntesis</div>
+    <h2 class="section-title display reveal">Once hechos para el equipo.</h2>
+    <p class="section-lead reveal">
+      No son opiniones. Son datos. Cada uno está documentado en los reportes internos. Léanlos despacio.
+    </p>
+
+    <div class="facts-list">
+      <div class="fact-item reveal">
+        <div class="fact-num">01</div>
+        <div class="fact-text">El <strong>0.7%</strong> del tráfico —directo y email— genera la mayor calidad de lectura. Ese 0.7% es nuestro negocio real.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">02</div>
+        <div class="fact-text">El <strong>7.93%</strong> del tráfico aparente es ruido de bots. No es audiencia. Es contaminación de métricas.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">03</div>
+        <div class="fact-text">De 5,000 piezas, sólo <strong>161</strong> se leen a profundidad. El resto rellena el servidor.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">04</div>
+        <div class="fact-text">El Semanario, con <strong>1 pieza por semana</strong>, supera en eficiencia compuesta a Información, que produce 250 piezas por semana.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">05</div>
+        <div class="fact-text">Las piezas narrativas tienen <strong>8.6×</strong> más RFV que el clickbait. El clickbait genera 47× más usuarios. Pero esos usuarios no regresan.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">06</div>
+        <div class="fact-text"><strong>1 Lover = 219 New</strong>. El negocio no está en sumar New. Está en cultivar Lovers.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">07</div>
+        <div class="fact-text">El núcleo fiel —<strong>58,588 personas</strong>, 0.73%— genera el 18.84% de pageviews. Es la única audiencia que un paywall puede monetizar.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">08</div>
+        <div class="fact-text">Las columnas firmadas tienen RFV <strong>40–55</strong>. Las notas anónimas, RFV 2–5. La voz reconocible es activo.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">09</div>
+        <div class="fact-text">Quien teclea vanguardia.com.mx se queda <strong>18.8 min</strong>. Quien viene de Google, <strong>4 min</strong>. El problema no es atraer. Es retener.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">10</div>
+        <div class="fact-text">El <strong>lunes</strong> y el <strong>jueves</strong> son las ventanas de lectura profunda. El martes es ruido de volumen.</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-num">11</div>
+        <div class="fact-text">De 25,577 piezas producidas, sólo <strong>50</strong> generan el 58% del tráfico. Producir más no es la solución. Producir mejor sí.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="closing">
+  <div class="container">
+    <div class="closing-kicker reveal">La pregunta que el equipo debe responder</div>
+    <h2 class="closing-question reveal">
+      ¿Vamos a seguir compitiendo por los <span class="accent">47×</span> usuarios efímeros del clickbait,<br>
+      o vamos a construir los <span class="accent">8.6×</span> lectores fieles de la narrativa?
+    </h2>
+
+    <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.4; color: rgba(242,239,231,0.7); max-width: 760px;" class="reveal">
+      No es una pregunta retórica. Es la única pregunta operativa que importa este año. La respuesta determina qué reporteamos mañana, qué publicamos el lunes, qué firmamos el jueves, qué dejamos atrás. Y, sobre todo, para quién escribimos.
+    </p>
+
+    <div class="closing-meta">
+      <div>VANGUARDIA MX · DIAGNÓSTICO INTERNO</div>
+      <div>Periodo: Q1 2026 · Fuente: métricas internas del medio</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ============ ANIMACIONES SCROLL ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============ COUNTERS ============
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  const duration = 1600;
+  const start = performance.now();
+  const finalText = el.textContent;
+
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = Math.floor(target * eased);
+    if (val >= 1000000) {
+      el.textContent = (val / 1000000).toFixed(2) + ' M';
+    } else if (val >= 1000) {
+      el.textContent = (val / 1000).toFixed(0) + ' K';
+    } else {
+      el.textContent = val.toLocaleString('es-MX');
+    }
+    if (t < 1) requestAnimationFrame(tick);
+    else el.textContent = finalText;
+  }
+  requestAnimationFrame(tick);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.target.dataset.count) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// ============ HERO NUMBER ANIMATION ============
+window.addEventListener('load', () => {
+  const heroNum = document.getElementById('hero-num');
+  if (heroNum) {
+    const span = heroNum.querySelector('.accent');
+    const target = 10320;
+    const duration = 2000;
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 4);
+      const val = Math.floor(target * eased);
+      span.textContent = val.toLocaleString('es-MX');
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    setTimeout(() => requestAnimationFrame(tick), 400);
+  }
+});
+</script>
+
+</body>
+</html>
